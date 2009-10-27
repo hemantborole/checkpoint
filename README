@@ -1,0 +1,24 @@
+Some scripts and processes are lengthy and if they fail somewhen halfway, it could be a pain to rerun the entire process all over again.
+The checkpoint.rb tries to reduce this burden by making the best effort to restart from the last point of failure.
+You get to decide where to mark these points. checkpoint.rb tries to save as much state as the ruby interpreter can allow. (I think in this respect jruby is little better).
+
+Usage:
+
+See the example for detail. For the lazy and impatient ones, heres a snippet:
+
+require 'checkpoint'
+
+include Checkpoint
+
+checkpoint( {:key1 => 'val1' }) {
+  puts "This is the first checkpoint. If anything breaks in here, this will be rerun"
+}
+
+checkpoint( {:keys => 'values' }) {
+  puts "This is the second checkpoint. If anything breaks in here, the first checkpoint will be skipped, but this one will be rerun"
+}
+
+
+TODO:
+The hash passed to the checkpoint method is right now ignored, thinking of what to do with it :)
+
