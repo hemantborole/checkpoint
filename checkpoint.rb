@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'fileutils'
 
 module Checkpoint
 
@@ -47,6 +48,13 @@ module Checkpoint
     undump
     blk.call
     dump
+  end
+
+  def clear_checkpoints
+    init  # Read older values.
+    FileUtils.rm_f( @store ) if File.exists?( @store )
+    FileUtils.rm_f( @cp_last ) if File.exists?( @cp_last )
+    @current = 0; @last_checkpoint = 0
   end
 
   private

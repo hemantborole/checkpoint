@@ -6,6 +6,11 @@ Usage:
 
 See the example for detail. For the lazy and impatient ones, heres a snippet:
 
+
+#!/bin/env/ruby
+## Code starts here
+## example.rb
+
 require 'checkpoint'
 
 include Checkpoint
@@ -18,6 +23,9 @@ checkpoint( {:keys => 'values' }) {
   puts "This is the second checkpoint. If anything breaks in here, the first checkpoint will be skipped, but this one will be rerun"
 }
 
+clear_checkpoints
+
+## End of Code
 
 TODO:
 The hash passed to the checkpoint method is right now ignored, thinking of what to do with it :)

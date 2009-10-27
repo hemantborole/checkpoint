@@ -63,4 +63,5 @@ end
 
 ## main.
 t=Transaction.new
+#t.clear_checkpoints  ## Does not make sense to do this here, but just exposing this method in the example.
 t.transact
